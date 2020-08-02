@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "hkA0WXqJPsZXHvEVdpROb2/MH0QKEdgf0fLXoZi6ZHkonqVf4kG3T4MOBxAmH3kE8bJF5WpPsvtyI9Rx77X8pQ==",
+  "dgSpecHash": "MYf937eh0JNK8Xuq0OT9zfITn7E25oOsPG8aNSss4HE5QRnxA2tJcpf46JFJziXMIhx2Bog127RVnBqOSBB8Og==",
   "success": true,
   "projectFilePath": "C:\\Users\\dafc9\\Documents\\Programação\\ApiRestful-Course\\CourseLibrary\\CourseLibrary.API\\CourseLibrary.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dafc9\\.nuget\\packages\\automapper\\8.1.1\\automapper.8.1.1.nupkg.sha512",
+    "C:\\Users\\dafc9\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\6.1.1\\automapper.extensions.microsoft.dependencyinjection.6.1.1.nupkg.sha512",
     "C:\\Users\\dafc9\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\dafc9\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\dafc9\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
