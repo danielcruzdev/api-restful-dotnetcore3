@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using CourseLibrary.API.Helpers;
 using CourseLibrary.API.Models;
 using CourseLibrary.API.ResourceParameters;
 using CourseLibrary.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Controllers
 {
@@ -33,7 +36,7 @@ namespace CourseLibrary.API.Controllers
             return Ok(_mapper.Map<IEnumerable<AuthorDto>>(authorsFromRepo));
         }
 
-        [HttpGet("{authorId}", Name = "GetAuthor")]
+        [HttpGet("{authorId}", Name ="GetAuthor")]
         public IActionResult GetAuthor(Guid authorId)
         {
             var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
@@ -42,7 +45,7 @@ namespace CourseLibrary.API.Controllers
             {
                 return NotFound();
             }
-
+             
             return Ok(_mapper.Map<AuthorDto>(authorFromRepo));
         }
 
@@ -63,14 +66,6 @@ namespace CourseLibrary.API.Controllers
         public IActionResult GetAuthorsOptions()
         {
             Response.Headers.Add("Allow", "GET,OPTIONS,POST");
-            return Ok();
-        }
-
-
-        [HttpOptions("{id:int}/options")]
-        public IActionResult GetOptions(int id)
-        {
-            Response.Headers.Add("Teste", $"{id}");
             return Ok();
         }
     }
