@@ -9,8 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CourseLibrary.API.Controllers
 {
@@ -75,13 +73,13 @@ namespace CourseLibrary.API.Controllers
 
             var courseToReturn = _mapper.Map<CourseDto>(courseEntity);
             return CreatedAtRoute("GetCourseForAuthor",
-                new { authorId = authorId, courseId = courseToReturn.Id }, 
+                new { authorId = authorId, courseId = courseToReturn.Id },
                 courseToReturn);
         }
 
         [HttpPut("{courseId}")]
-        public IActionResult UpdateCourseForAuthor(Guid authorId, 
-            Guid courseId, 
+        public IActionResult UpdateCourseForAuthor(Guid authorId,
+            Guid courseId,
             CourseForUpdateDto course)
         {
             if (!_courseLibraryRepository.AuthorExists(authorId))
@@ -119,7 +117,7 @@ namespace CourseLibrary.API.Controllers
         }
 
         [HttpPatch("{courseId}")]
-        public ActionResult PartiallyUpdateCourseForAuthor(Guid authorId, 
+        public ActionResult PartiallyUpdateCourseForAuthor(Guid authorId,
             Guid courseId,
             JsonPatchDocument<CourseForUpdateDto> patchDocument)
         {
@@ -149,7 +147,7 @@ namespace CourseLibrary.API.Controllers
                 var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
 
                 return CreatedAtRoute("GetCourseForAuthor",
-                    new { authorId, courseId = courseToReturn.Id }, 
+                    new { authorId, courseId = courseToReturn.Id },
                     courseToReturn);
             }
 
@@ -166,6 +164,27 @@ namespace CourseLibrary.API.Controllers
 
             _courseLibraryRepository.UpdateCourse(courseForAuthorFromRepo);
 
+            _courseLibraryRepository.Save();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{courseId}")]
+        public ActionResult DeleteCourseForAuthor(Guid authorId, Guid courseId)
+        {
+            if (!_courseLibraryRepository.AuthorExists(authorId))
+            {
+                return NotFound($"O autor com o \nID: {authorId} \nNão existe!");
+            }
+
+            var courseForAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
+
+            if (courseForAuthorFromRepo == null)
+            {
+                return NotFound($"O curso com o \nID: {courseId} \nNão existe!");
+            }
+
+            _courseLibraryRepository.DeleteCourse(courseForAuthorFromRepo);
             _courseLibraryRepository.Save();
 
             return NoContent();
